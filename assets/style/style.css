@@ -1,0 +1,82 @@
+body{
+    background: #37474f;
+    color:#fff;
+    min-width: 450px;
+   
+}
+
+input:not([type]), input[type=text], input[type=password], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime], input[type=datetime-local], input[type=tel], input[type=number], input[type=search], textarea.materialize-textarea {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #fff;
+    border-radius: 0;
+    outline: none;
+    height: 3rem;
+    width: 100%;
+    font-size: 1rem;
+    margin: 0 0 20px 0;
+    padding: 0;
+    box-shadow: none;
+    box-sizing: content-box;
+    transition: all 0.3s;
+
+}
+
+.input-field.col label {
+    left: 0.75rem;
+}
+.input-field label {
+    color: #fff;
+    position: absolute;
+    top: 0.8rem;
+    left: 0;
+    font-size: 1rem;
+    cursor: text;
+    transition: .2s ease-out;
+}
+
+input[type=text]::placeholder, input[type=password::placeholder, input[type=email::placeholder {
+  color:#fefefe;
+}
+
+input:not([type]):focus:not([readonly]),
+input[type=text]:focus:not([readonly]),
+input[type=password]:focus:not([readonly]),
+input[type=email]:focus:not([readonly]),
+input[type=url]:focus:not([readonly]),
+input[type=time]:focus:not([readonly]),
+input[type=date]:focus:not([readonly]),
+input[type=datetime]:focus:not([readonly]),
+input[type=datetime-local]:focus:not([readonly]),
+input[type=tel]:focus:not([readonly]),
+input[type=number]:focus:not([readonly]),
+input[type=search]:focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0 1px 0 0 #ccc;
+}
+
+.tblr table{
+  height:50px;
+  overflow-y:scroll;
+  display:none;
+}
+
+.no-gmail-msg.container {
+    position: ralative;
+    top:50px;
+}
+
+td.action-column {
+    width:120px;
+}
+.main-pane{
+ min-height: 450px;
+}
+p.not-gmail-msg{
+    font-size:16px !important;
+}
+
+.disabledkeyword {
+text-decoration: line-through;
+}

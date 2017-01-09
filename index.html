@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="emailDestoryer" ng-csp>
+<head>
+<meta name="description" content="Email Destoryer">
+    <meta charset="UTF-8">
+    <title>Document</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel="stylesheet" href="/assets/style/style.css">
+      
+<script src="/assets/js/angular.min.js"></script>
+<script src="/assets/js/script.js"></script>
+<script src="/assets/js/storage.service.js"></script>
+</head>
+<body ng-controller="EmailDestroyerCtlr" ng-class="{'main-pane':gmailTab}">
+
+<div  ng-if="!gmailTab" class=" no-gmail-msg container center-align" style="margin-top:20px;">
+   <div class="card-panel teal lighten-2">
+     <h6 class="not-gmail-msg">This is extionsion is only available in Gmail Tab only.</h6>
+     </div>
+</div>
+
+  <div class="container" ng-if="gmailTab" ng-init="selectEmails()">
+   <div class="row">
+    <div class="input-field col s12">
+          <input ng-model="newKeyWord.title" type="text" class="validate" ng-keyup="submitForm($event)" placeholder="Enter keyword"/>
+      
+        </div>
+    </div>
+    <!--.row-->
+    <div class="row tblr">
+      
+      
+      <div class="progress" ng-if="deleting">
+        <div class="indeterminate"></div>
+      </div>
+      
+      
+      
+          <table class="bordered ">
+        <thead>
+          <tr>
+              
+              <th data-field="name" style="width:180px !important;">Keyword</th>
+              <th data-field="price">{{totalMails}} Mail{{totalMails>1? 's':''}} Found</th>
+               <th data-field="price" class="action-column" ></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat="keyword in keywords">
+            <td ng-style="{'width':'180px !important','text-overflow': 'ellipsis','text-decoration': !keyword.enabled ? 'line-through':'none'}" ng-class="{disabledkeyword:keyword==false}">{{keyword.title}}</td>
+             <td>{{keyword.totalMatched}}</td>
+            <td class="action-column right-align" >
+                <a href="#" class="btn enable-btn" title="Enable" ng-if="!keyword.enabled" ng-click="changeStatusKeyword($index)"><i class="material-icons" >visibility</i></a>
+           
+               <a href="#" class="btn disable-btn" ng-if="keyword.enabled" title="Disable" ng-click="changeStatusKeyword($index)"><i class="material-icons" >visibility_off</i></a>
+              <a href="#"  class="btn delete-btn red" title="Delete" ng-click="deleteKeyword($index)"><i class="material-icons">delete</i></a>
+              
+            </td>
+
+          </tr>
+         
+        </tbody>
+      </table>
+    </div>
+ <div class="row center">
+            <a href="#" class="btn-large waves-effect waves-light" ng-click="selectEmails()">
+              <i class="material-icons left">youtube_searched_for</i> Sync Again
+              </a>
+              <a href="#" class="btn-large waves-effect waves-light {{  totalMails > 0 ? '': 'disabled'}}" ng-click="deleteFilteredEmails()">
+              <i class="material-icons left">delete</i> Delete All
+              </a>
+          </div>
+  </div>
+</body>
+</html>
