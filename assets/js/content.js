@@ -1,10 +1,15 @@
+function resetCheckboxes() {
+       $(".F").find("div[aria-checked='true']").trigger("click");
+}
+
 function selectEmails(keywords) {
     var newKeyWordsWithCount = keywords;
     if (document.getElementsByClassName("F").length) {
-        document.getElementsByClassName("F")[0].querySelectorAll("tbody>tr").forEach(function (node) {
+         resetCheckboxes();
+    document.getElementsByClassName("F")[0].querySelectorAll("tbody>tr").forEach(function (node) {
             var columns = node.querySelectorAll("td");
-            var subject = columns[3].querySelector("span").textContent;
-            var description = columns[5].querySelectorAll("span")[0].textContent;
+            var subject = $(columns[3]).text();
+            var description = $(columns[5]).text();
             //TODO: NEED TO calculate more perfect count regarding titles because on title may have multiple common keywords 
             newKeyWordsWithCount.forEach(function (keyWord, index) {
                 if ((subject.indexOf(keyWord.title) > -1 || description.indexOf(keyWord.title) > -1) && keyWord.enabled === true) {
@@ -14,6 +19,7 @@ function selectEmails(keywords) {
             });
 
         });
+     
         return newKeyWordsWithCount;
 
     } else {
@@ -46,7 +52,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
                 sendResponse({ result: "selection_success", keywordItems: newkeywords });
             }
             break;
-            
+
         case "deleteMails":
             deleteMails();
             sendResponse({ result: 'deleted' });
