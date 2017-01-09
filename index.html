@@ -12,15 +12,15 @@
 <script src="/assets/js/script.js"></script>
 <script src="/assets/js/storage.service.js"></script>
 </head>
-<body ng-controller="EmailDestroyerCtlr" ng-class="{'main-pane':gmailTab}">
+<body ng-controller="EmailDestroyerCtlr" ng-class="{'main-pane':gmailTab}" >
 
 <div  ng-if="!gmailTab" class=" no-gmail-msg container center-align" style="margin-top:20px;">
    <div class="card-panel teal lighten-2">
      <h6 class="not-gmail-msg">This is extionsion is only available in Gmail Tab only.</h6>
      </div>
 </div>
-
-  <div class="container" ng-if="gmailTab" ng-init="selectEmails()">
+<div ng-if="gmailTab" style="max-height:350px;">
+  <div class="container"  ng-init="selectEmails()" style="margin-bottom:70px;">
    <div class="row">
     <div class="input-field col s12">
           <input ng-model="newKeyWord.title" type="text" class="validate" ng-keyup="submitForm($event)" placeholder="Enter keyword"/>
@@ -28,15 +28,11 @@
         </div>
     </div>
     <!--.row-->
-    <div class="row tblr">
-      
-      
+    <div class="row ">
       <div class="progress" ng-if="deleting">
         <div class="indeterminate"></div>
       </div>
-      
-      
-      
+  
           <table class="bordered ">
         <thead>
           <tr>
@@ -65,7 +61,7 @@
       </table>
     </div>
     </div>
- <div class="row center fixed-footer" style="position: fixed;width:100%;margin:0;padding-top:10px;padding-bottom:10px; bottom:0;background: #37474f;">
+ <div ng-if="gmailTab" class="row center fixed-footer" style="position: fixed;width:100%;margin:0;padding-top:10px;padding-bottom:10px; bottom:0;background: #37474f;">
             <a href="#" class="btn-large waves-effect waves-light" ng-click="selectEmails()">
               <i class="material-icons left">youtube_searched_for</i> Sync Again
               </a>
@@ -73,5 +69,8 @@
               <i class="material-icons left">delete</i>{{inboxPageActive == true ? 'Move to Spam':'Delete All'}}
               </a>
           </div>
+
+          </div>
+          <!--.gmailTab ends-->
 </body>
 </html>

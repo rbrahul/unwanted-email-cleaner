@@ -71,7 +71,8 @@ td.action-column {
     width:120px;
 }
 .main-pane{
- min-height: 450px;
+ min-height: 250px;
+ max-height: 350px;
 }
 p.not-gmail-msg{
     font-size:16px !important;
