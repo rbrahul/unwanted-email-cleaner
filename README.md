@@ -1,2 +1,2 @@
 # unwanted-email-cleaner
-Clean Unwanted emails from your Gmail account filtered by keywords
+It's a chrome browser extension to Clean Unwanted emails from your Gmail account filtered by keywords. 
