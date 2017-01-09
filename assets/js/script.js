@@ -72,7 +72,6 @@ var app = angular.module("emailDestoryer",[]);
        return word.totalMatched;
      });
      $scope.totalMails = mails.reduce(function(first,second) {
-       console.log(first)
        return first+second;
      });
      console.info("Total mail"+$scope.totalMails);
@@ -85,18 +84,19 @@ $scope.selectEmails = function(tab)
          
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         chrome.tabs.sendMessage(tabs[0].id, {command: "selectMail",keywords:storageService.getAllKeywords()}, function(response) {
-            if(response.result=='selection_success') {
+            if(response && response.hasOwnProperty('result') && response.result=='selection_success' && response.hasOwnProperty('keywordItems')) {
               $scope.$apply(function($scope){
                 $scope.keywords = response.keywordItems;
                                   var mails = $scope.keywords.map(function(word) {
                                  return word.totalMatched;
                            });
                     $scope.totalMails = mails.reduce(function(first,second) {
-                        console.log(first)
                    return first+second;
                 });
      console.info("Total mail"+$scope.totalMails);
               })
+            } else {
+
             }
         });
     });
@@ -108,8 +108,8 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
       $scope.deleting = true;
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         chrome.tabs.sendMessage(tabs[0].id, {command: "deleteMails",keywords:$scope.keywords}, function(response) {
-            console.log(response.result);
-            if(response.result==='deleted') {
+          
+            if(response && response.hasOwnProperty('result') && response.result==='deleted') {
               $timeout(function(){
                 $scope.$apply(function($scope){
                   $scope.deleting= false;

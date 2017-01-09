@@ -14,11 +14,13 @@ function selectEmails(keywords) {
          });
 
     });
+     return newKeyWordsWithCount;
 
     } else {
         console.error("Not Gmail Page");
+        return null;
     }
-    return newKeyWordsWithCount;
+   
 }
 
 
@@ -42,7 +44,10 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     switch(request.command) {
         case "selectMail":
                 var newkeywords = selectEmails(request.keywords);
+                if(newkeywords) {
                 sendResponse({result: "selection_success",keywordItems:newkeywords});
+                }
+
                 break;
         case "deleteMails":
                     deleteMails();
