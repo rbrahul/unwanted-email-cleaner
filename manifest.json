@@ -15,6 +15,7 @@
       "assets/js/script.js",
       "assets/js/storage.service.js"    
     ],
+    "css": ["assets/style/style.css"],
     "persistent": false
   },
 "permissions": [
@@ -29,6 +30,7 @@
         "https://mail.google.com/*"
       ],
       "js": [
+        "assets/js/jquery-3.1.1.min.js",
         "assets/js/content.js"
       ],
       "run_at": "document_end",

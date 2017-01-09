@@ -64,14 +64,14 @@
         </tbody>
       </table>
     </div>
- <div class="row center">
+    </div>
+ <div class="row center fixed-footer" style="position: fixed;width:100%;margin:0;padding-top:10px;padding-bottom:10px; bottom:0;background: #37474f;">
             <a href="#" class="btn-large waves-effect waves-light" ng-click="selectEmails()">
               <i class="material-icons left">youtube_searched_for</i> Sync Again
               </a>
               <a href="#" class="btn-large waves-effect waves-light {{  totalMails > 0 ? '': 'disabled'}}" ng-click="deleteFilteredEmails()">
-              <i class="material-icons left">delete</i> Delete All
+              <i class="material-icons left">delete</i>{{inboxPageActive == true ? 'Move to Spam':'Delete All'}}
               </a>
           </div>
-  </div>
 </body>
 </html>

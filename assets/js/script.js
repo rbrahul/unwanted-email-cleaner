@@ -8,6 +8,7 @@ app.controller("EmailDestroyerCtlr", ['$scope', '$timeout', 'storageService', fu
 
   $scope.gmailTab = false;
   $scope.deleting = false;
+  $scope.inboxPageActive = false;
   $scope.totalMails = 0;
   $scope.keywords = [
     {
@@ -30,6 +31,8 @@ app.controller("EmailDestroyerCtlr", ['$scope', '$timeout', 'storageService', fu
       var keywordAdded = storageService.addNewKeyword($scope.newKeyWord);
       if (keywordAdded) {
         console.info('key word added');
+        console.info($scope.newKeyWord);
+        $scope.selectEmails();
       } else {
         console.error('something went wrong while adding keyword');
       }
@@ -128,7 +131,9 @@ app.controller("EmailDestroyerCtlr", ['$scope', '$timeout', 'storageService', fu
         console.log("Found : " + window.tabUrl);
         $scope.$apply(function () {
           $scope.gmailTab = true;
-
+          if (window.tabUrl.indexOf("#inbox") > -1) {
+           $scope.inboxPageActive = true;
+          }
 
         });
       }

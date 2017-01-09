@@ -80,3 +80,7 @@ p.not-gmail-msg{
 .disabledkeyword {
 text-decoration: line-through;
 }
+.fixed-footer{
+    position: fixed;
+    bottom:0;
+}
